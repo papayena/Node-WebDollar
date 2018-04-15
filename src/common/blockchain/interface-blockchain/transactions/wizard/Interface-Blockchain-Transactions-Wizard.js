@@ -90,7 +90,15 @@ class InterfaceBlockchainTransactionsWizard{
 
         let signature;
         try{
+
+            password = password.trim();
+
+            if( password.split(' ').length != 12 )
+                return { result:false, message: "Your password doesn't have 12 words" };
+
+
             signature = await address.signTransaction(transaction, password);
+
         } catch (exception){
             console.error("Creating a new transaction raised an exception - Failed Signing the Transaction", exception);
 
