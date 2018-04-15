@@ -412,6 +412,9 @@ class InterfaceBlockchainAddress{
             if (password === undefined) password = InterfaceBlockchainAddressHelper.askForPassword();
             if (password === null) return null;
 
+            if( password.trim().split(' ').length !== 12 )
+                AdvancedMessages.alert("Your password doesn't have 12 words");
+
         } else password = undefined;
 
         privateKey = await this.getPrivateKey(password);
